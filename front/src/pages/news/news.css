@@ -1,0 +1,50 @@
+
+.news-box{
+    
+}
+.news-box .news-list{
+    width:100%;
+    overflow:hidden;
+}
+.news-box .statu-item{
+    width:100%;
+    overflow:hidden;
+    padding:10px;
+    background:rgba(0,0,0,.7);
+    margin-bottom:10px;
+    color:#fff;
+}
+.news-box .statu-item .statu-img{
+    width:100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.news-box .statu-item .statu-img img{
+    height:110px;
+    width: auto;
+    margin:0 10px 10px 0;
+    cursor: pointer;
+}
+.news-box .btnGroup{
+    width: 100%;
+    padding:20px;
+    text-align: center;
+    overflow: hidden;
+}
+.news-box .btnGroup label{
+    background:#fff;
+    padding:4px 10px;
+    border-radius:4px;
+    margin:0 5px;
+    color: #000;
+}
+.news-box .btnGroup button{
+    padding:4px 10px;
+    border-radius:4px;
+    border:0;
+    background:#ccc;
+    cursor: pointer;
+}
+.turnlink{
+    color:#3385FF;
+}

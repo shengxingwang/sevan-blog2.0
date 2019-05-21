@@ -1,0 +1,50 @@
+.layout{
+    width: 100%;
+    height:100%;
+    background: rgba(0,0,0,.6);
+    position:fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    overflow: auto;
+}
+.alert-box{
+    width:40%;
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    background:#fff;
+    padding:32px;
+    text-align: center;
+    color: #333;
+    border-radius:10px;
+}
+.alert-tip{
+    width:40%;
+    position:relative;
+    left: 50%;
+    top: 50%;
+    line-height:26px;
+    transform: translate3d(-50%, -50%, 0);
+    background:#fff;
+    padding:8px;
+    text-align: center;
+    color: #333;
+    border-radius:6px;
+}
+.alert-box .closebtn{
+    position: absolute;
+    width:32px;
+    height: 32px;
+    right:-10px;
+    top:-10px;
+    border-radius:50%;
+    background: url("./../../static/images/close.png") no-repeat center #fff;
+    background-size:18px;
+    cursor: pointer;
+}
+.alert-box img{
+    width: 100%;
+    height: auto;
+}

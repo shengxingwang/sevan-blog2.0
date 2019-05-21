@@ -1,0 +1,114 @@
+body {
+    font-family:Futura,-apple-system,SF UI Text,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
+    font-size:14px;
+    color:#ccc;
+  }
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  /*修复img默认位置和IE边框*/
+  img{
+    vertical-align: top;
+    border:none;
+  }
+  
+  /*去除虚线*/
+  input:focus,select:focus,textarea:focus,button:focus{
+    outline: none;
+  }
+  /*重置部分表单圆角和内阴影*/
+  input[type="text"],input[type="file"],input[type="password"],input[type="search"],input[type="tel"],input[type="number"],input[type="email"],input[type="url"],textarea{
+    -webkit-appearance:none;
+  }
+  /*去除文本框上下箭头*/
+  input[type="number"]::-webkit-inner-spin-button{
+    -webkit-appearance:none;
+  }
+  input{
+    padding-left:5px;
+  }
+  a{
+    text-decoration: none;
+    /*ios禁止页面在新窗口打开*/
+    -webkit-touch-callout:none;
+  }
+  body{
+    background-color: #f5f5f5;
+  }
+  em,i{
+    font-style: normal;
+  }
+  li{
+    list-style: none;
+  }
+  html,body{
+    height: 100%;
+    background:#fff;
+    overflow:hidden;
+    color: #333;
+    /*background:#f1f1f1;*/
+  }
+
+  @font-face {
+    font-family: 'iconfont';  /* project id 1192091 */
+    src: url('//at.alicdn.com/t/font_1192091_5xx6tmco2kh.eot');
+    src: url('//at.alicdn.com/t/font_1192091_5xx6tmco2kh.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_1192091_5xx6tmco2kh.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_1192091_5xx6tmco2kh.woff') format('woff'),
+    url('//at.alicdn.com/t/font_1192091_5xx6tmco2kh.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_1192091_5xx6tmco2kh.svg#iconfont') format('svg');
+  }
+
+  .iconfont{
+    color: #666;
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root{
+    width:100%;
+    height: 100%;
+    overflow:hidden;
+  }
+  /**
+  天气插件css
+  **/
+  #weather-float-he{
+    z-index: 9999;
+  }
+
+  
+  .wrap{
+    position:relative;
+    width:100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .container{
+    zoom: 1;
+    width: 900px;
+    margin: 0 auto;
+  }
+  .container::after{
+    display: block;
+    content: "";
+    clear: both;
+  }
+  .art-home{
+    width: 100%;
+    overflow: hidden;
+    padding-top:100px;
+    background: #f5f5f5;
+    margin-bottom: 30px;
+  }
+  
+  /*statu-item*/
+  

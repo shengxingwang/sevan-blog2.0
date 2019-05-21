@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>测试</title>
+</head>
+<body>
+	<form action="http://localhost:9090/servers/sevanBlog/bos/myBos.php" method="post" enctype="multipart/form-data">
+		<input type="file" name="file" id="fileUp">
+		<input type="submit" name="上传">
+		<img src="http://test-bluck.gz.bcebos.com/1545036803chun.jpg" />
+	</form>
+	
+	<script type="text/javascript">
+		[].map(function(item,i) {
+			console.log(1);
+		})
+		var filedom = document.getElementById('fileUp');
+		filedom.onchange = function(e){
+			console.log(1);
+			var e = window.event||e;
+
+			var file = e.target.files[0];
+			console.log(file);
+
+			// http://localhost:9090/servers/sevanBlog/bos/myBos.php
+		} 
+	</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+.art-content{
+    width: 100%;
+    overflow: hidden;
+    padding:0 20px;
+}
+.art-content .title{
+    width: 100%;
+    line-height:60px;
+    font-size:24px;
+    font-weight: 600;
+    color: #333333;
+    text-align: center;
+    border-bottom: 1px solid #dfdfdf;
+}
+.art-content .con-txt{
+    padding:15px;
+}
+.art-content .art-info{
+    padding:15px;
+    border: 1px solid #dfdfdf;
+    border-left: none;
+    border-right: none;
+}
+.art-content .art-info p{
+    line-height:26px;
+}
+.art-content .art-info p .t{
+    color: #666666;
+}
+.art-content .art-info p .v{
+    color: #888888;
+}
+.art-content .marked-box{
+    font-size: 16px;
+    line-height:28px;
+}
+.art-content .marked-box h2{
+    font-weight:400;
+    font-size:18px;
+    padding:20px 0;
+}

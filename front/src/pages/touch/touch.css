@@ -1,0 +1,46 @@
+.touch-box{
+    
+    padding:30px 20px 30px;
+    color:#fff;
+}
+.touch-box .tit{
+    font-size:18px;
+    line-height:30px;
+    padding-bottom:30px;
+}
+.touch-box .inp-item{
+    width:100%;
+    display: flex;
+    padding-left:30px;
+    margin-bottom:20px;
+}
+.touch-box .inp-item label{
+    width:120px;
+}
+.touch-box .inp-item input{
+    height:32px;
+    width:300px;
+}
+.touch-box .inp-item input,.touch-box .inp-item textarea{
+    display: block;
+    background:#fff;
+    border: 1px solid #ededed;
+    border-radius: 4px;
+}
+.touch-box .inp-item textarea{
+    height:200px;
+    width:360px;
+    padding:5px;
+}
+.subBtn{
+    background:#3065E1;
+    color: #fff;
+    margin-left:120px;
+    height:32px;
+    width:100px;
+    border:none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+}

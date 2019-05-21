@@ -1,0 +1,39 @@
+.main-box{
+    flex: 1;
+    background: #f5f5f5;
+}
+.left-con{
+    width:620px;
+    padding: 20px;
+    overflow: hidden;
+    float: left;
+    background: #fff;
+}
+
+.navBar{
+    width: 100%;
+    padding:15px 0;
+    overflow: hidden;
+    border-bottom:1px solid #acacac;
+}
+.navBar .bar{
+    display: flex;
+    justify-content:flex-start;
+}
+.navBar li{
+    width:90px;
+    display: inline-block;
+    line-height:42px;
+    height:42px;
+    /* font-weight: 600; */
+    font-size:16px;
+    margin-right:20px;
+}
+.navBar li a{
+    text-align: center;
+    display: block;
+    color: #333;
+}
+.navBar li:hover{
+    border-bottom: 2px solid #aaa;
+}

@@ -1,0 +1,228 @@
+.about{
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+.about .left-info{
+    width:300px;
+    background: #fff;
+    align-items:stretch;
+}
+.about .rig-info{
+    margin-left: 20px;
+    flex: 1;
+    min-height:500px;
+    background: #fff;
+    padding:20px;
+}
+.about .new-list{
+    width:80%;
+    margin:40px auto 0;
+    padding-left:30px;
+    border-left:1px solid #dedede;
+}
+.about .new-list .icon-t{
+    position: absolute;
+    line-height:20px;
+    padding-left:28px;
+    left:-42px;
+    top:-20px;
+    font-size:12px;
+    color: #999;
+    background:url('./../../static/images/zuji.png') no-repeat left;
+    background-size:auto 20px;
+}
+.about .new-list li{
+    position: relative;
+    width:100%;
+    padding:0 20px 0;
+    min-height: 80px;
+    margin-bottom:40px;
+
+}
+.about .rig-info .new-t{
+    width: 100%;
+    font-weight: normal;
+    line-height:60px;
+    font-size: 18px;
+    border-bottom: 1px solid #adadad;
+}
+.about .rig-info .newimg{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top:20px;
+}
+.about .rig-info .newimg .imgitem{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    margin: 0 20px 20px 0;
+    cursor: pointer;
+}
+.about .rig-info .newimg .imgitem img{
+    height: 100%;
+}
+.about .rig-info .newimg .imgitem:hover::after{
+    opacity:1;
+}
+.about .rig-info .newimg .imgitem::after{
+    opacity:0;
+    z-index: 99;
+    content: '';
+    position: absolute;
+    color:#fff;
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    background: url('./../../static/images/fangda.png') no-repeat center rgba(0, 0, 0, .7);
+    background-size:30px;
+    transition: opacity 0.4s;
+}
+.about .about-head{
+    position: relative;
+    width: 100%;
+    height:190px;
+}
+.bg-box{
+    position: absolute;
+    width: 100%;
+    height:120px;
+    overflow: hidden;
+}
+.about .about-head .bg-img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: imgmove 10s linear infinite alternate;
+    -webkit-animation: imgmove 10s linear infinite alternate;
+}
+.about .friendbtn{
+    cursor: pointer;
+    margin: 0 auto;
+    padding:4px 10px;
+    color: #999;
+    background: #fff;
+    border: 1px dashed #999;
+    border-radius:4px;
+}
+.about .friendbtn:hover{
+    background: #666;
+    color: #fff;
+}
+.about .about-head .sub-img{
+    cursor: pointer;
+    position: absolute;
+    top:60px;
+    border-radius:50%;
+    width: 140px;
+    height: 140px;
+    z-index:999;
+    left:50%;
+    margin-left: -70px;
+    border: 2px solid #fff;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+.about .about-head .sub-img .himg.hide{
+    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+    z-index: 0;
+}
+.about .about-head .sub-img .himg{
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    z-index: 1;
+    transition: all .4s;
+    -webkit-transition: all .4s;
+}
+.about .about-head .sub-img .himg,
+.about .about-head .sub-img .wximg{
+    position: absolute;
+    left: 0;
+    top: 0;
+    backface-visibility: hidden;
+}
+.about .about-head .sub-img img{
+    width: 100%;
+}
+.about .info-ban{
+    width: 100%;
+    padding:20px;
+    overflow: hidden;
+}
+.about .info-ban .item{
+    width: 100%;
+    display: flex;
+    color: #333;
+    font-size:14px;
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+.about .info-ban .item .t{
+    padding-right:10px;
+    padding-top: 2px;
+}
+.about .info-ban .item .v{
+   flex: 1;
+}
+.about .info-ban .item .v a{
+    margin-right:20px;
+    color: #333;
+}
+.about .info-ban .item .v .iconfont{
+    font-size:18px;
+}
+.about .info-ban .item .v .iconfont:hover{
+    color: #000;
+}
+@-webkit-keyframes imgmove{
+    0% {left:0; top:0;}
+    25% {left:-10px; top:-40px;}
+    50% {left:-26px; top:-100px;}
+    70% {left:-26px; top:-150px;}
+    100% {left:-27px; top:-206px;}
+}
+@keyframes imgmove{
+    0% {left:0; top:0;}
+    25% {left:-10px; top:-40px;}
+    50% {left:-26px; top:-100px;}
+    70% {left:-26px; top:-150px;}
+    100% {left:-27px; top:-206px;}
+}
+.mask{
+    position: fixed;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dilog{
+    padding: 24px;
+    position: relative;
+    background: #fff;
+}
+.dilog img{
+    max-height:500px;
+    min-height:200px;
+}
+.dilog .closebtn{
+    cursor: pointer;
+    position: absolute;
+    right:-10px;
+    top: -10px;
+    width:26px;
+    height:26px;
+    border-radius: 50%;
+    background: url('./../../static/images//close.png') no-repeat center #fff;
+    background-size:14px;
+}

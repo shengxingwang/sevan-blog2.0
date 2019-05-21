@@ -1,0 +1,42 @@
+.left-con .artlist{
+    width: 100%;
+    overflow: hidden;
+}
+.left-con .artlist .item{
+    position: relative;
+    width: 100%;
+    padding:10px 0;
+    overflow: hidden;
+}
+.left-con .artlist .item .tit{
+    width: 100%;
+    font-weight: 400;
+    line-height:36px;
+    font-size:18px;
+    color: #333333;
+}
+.left-con .artlist .item .descript{
+    font-size:14px;
+    color: #666;
+    line-height:28px;
+}
+.left-con .artlist .item .info{
+    font-size: 12px;
+    line-height:28px;
+    color: #999;
+}
+.left-con .artlist .item .space{
+    font-weight: bold;
+    padding: 0 6px;
+}
+.left-con .artlist .item::after{
+    content: "";
+    position: absolute;
+    left:0;
+    bottom:0;
+    width:150px;
+    height:1px;
+    background: #f1f1f1;
+}
+
+
