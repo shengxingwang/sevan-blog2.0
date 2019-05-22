@@ -1,6 +1,7 @@
 <?php
 	header("Access-Control-Allow-Origin: *");
 	header('conten-type:text/html;charset=utf-8'); 
+	header('Access-Control-Allow-Headers: Authorization'); 
 	include 'config.php';
 	include 'Mysql.class.php';
 	include 'resMsg.php';

@@ -78,8 +78,8 @@
 					}
 					$res = array(
 						'totalPage' => $totalPage,
-						'page' => $page,
-						'count' => $totalCount,
+						'page' => intval($page),
+						'count' => intval($totalCount),
 						'offset' => $offset,
 						'list' => $list
 					);

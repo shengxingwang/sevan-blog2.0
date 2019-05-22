@@ -10,23 +10,22 @@ const http = axios.create({
 
 
 
-// export const getAuthorization = () => {
-//   let str = ''
-//   if (window.localStorage.getItem('TOKEN')) {
-//     str = `Naice ${JSON.parse(window.localStorage.getItem('TOKEN') || '').token}`
-//   }
-//   return str
-// }
+export const getAuthorization = () => {
+  let str = ''
+  if (window.sessionStorage.getItem('TOKEN')) {
+    str = window.sessionStorage.getItem('TOKEN');
+  }
+  return str
+}
 
 const methodArr = ['post', 'put', 'delete', 'patch'];
 
 // 拦截器
 http.interceptors.request.use(config => {
-  console.log(config)
     if (methodArr.includes(config.method)) {
       config.data = qs.stringify(config.data)
     }
-    // config.headers.Authorization = getAuthorization()
+    config.headers.Authorization = getAuthorization();
     return config
   }, (error) => {
     return Promise.reject(error)
@@ -34,27 +33,17 @@ http.interceptors.request.use(config => {
 
 http.interceptors.response.use(response => {
     let data = {}
-    if (response.data.code === 0) {
-      message.error(response.data.message);
+    if (response.data.code === 900) {
+      window.location.href="/#/"
+    }
+    if (response.data.code !== 200) {
+      message.error(response.data.msg);
     } else {
       data = response.data
     }
     return data
   }, (error) => {
-    // if (!loginIn()) {
-    //   confirm({
-    //     title: '提示!',
-    //     content: '用户信息已过期，请点击确定后重新登录。',
-    //     okText: '确定',
-    //     cancelText: '取消',
-    //     onOk() {
-    //       window.location.href="/#/login"
-    //     },
-    //     onCancel() {
-    //       console.log('Cancel');
-    //     },
-    //   });
-    // }
+    message.error("请求错误！");
     return Promise.reject(error)
   })
 

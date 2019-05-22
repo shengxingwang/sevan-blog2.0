@@ -1,16 +1,21 @@
 <?php
-	require 'dbconfig.php';
-	require 'reponseMsg.class.php';
-	require 'mstoken.php';
+	header("Access-Control-Allow-Origin: *");
+	header('conten-type:text/html;charset=utf-8'); 
+	header('Access-Control-Allow-Headers: Authorization'); 
+	include 'config.php';
+	include 'resMsg.php';
+	include 'mstoken.php';
+	include 'Mysql.class.php';
 	$mstoken = new Mstoken;
 	$data = null;
-	$action = $_POST["action"];
+	$action = $_GET["action"];
+	$db = new Mysql($config);
 	switch($action){
 		case 'login':
 			$userid = isset($_POST["userid"])?$_POST["userid"]:'';
 			$pwd = md5($_POST["pwd"]);
 			$sql = "select * from user_admin where userid='$userid'";
-			$result = mysqli_query($conn,$sql);
+			$result = $db->query($sql);
 			if($result){
 				if(($row = mysqli_fetch_array($result))!==null){
 					if($row["pwd"]===$pwd){
@@ -37,7 +42,7 @@
 			$code=413;
 			$message="啊噢！系统开小差了";
 	}
-	$response = new reponseMsg;
-	echo $response->enjson($code,$message,$data);
+	$response = new Response();;
+	echo $response->json($code,$message,$data);
 	mysqli_close($conn);
 ?>

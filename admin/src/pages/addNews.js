@@ -87,6 +87,11 @@ import {
               console.log(res);
               if(res.code===200){
                 message.success('发布成功！');
+                this.props.form.resetFields();
+                this.setState({
+                  fileUrlArr:[],
+                  fileList:[]
+                })
               }else{
                 message.error(res.msg);
               }
@@ -102,7 +107,7 @@ import {
       const formItemLayout = {
         labelCol: {
           xs: { span: 24 },
-          sm: { span: 8 },
+          sm: { span: 3 },
         },
         wrapperCol: {
           xs: { span: 24 },

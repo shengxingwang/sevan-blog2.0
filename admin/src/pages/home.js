@@ -20,6 +20,7 @@ class App extends Component {
                 <Route exact path="/home/edite/:id" component={loadComponent('editeArticle')}/>
                 <Route exact path="/home/taglist" component={loadComponent('taglist')}/>
                 <Route exact path="/home/addnews" component={loadComponent('addNews')}/>
+                <Route exact path="/home/newslist" component={loadComponent('newsList')}/>
                 <Route exact path="/home/skitch" component={loadComponent('skitch')}/>
                 <Route exact path="/home/classify" component={loadComponent('classify')}/>
                 <Route component={loadComponent('404')}/>

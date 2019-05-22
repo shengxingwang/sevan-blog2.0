@@ -36,6 +36,7 @@ class ItemHome extends Component{
                                 <span><Link to='/my/arthome'>文章</Link></span>
                                 <span><Link to='/my/about'>关于</Link></span>
                                 <span><Link to='/my/filelog'>归档</Link></span>
+                                <span><Link to='/my/feedme'>留言</Link></span>
                             </div>
                         </div>
                     </div>

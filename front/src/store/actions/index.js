@@ -65,18 +65,25 @@ export const getGuiDang = (params) => {
 //     }
 // };
 
-export const getNewsData = (data)=> {
-    return dispatch => {
-        getNews(data).then(res => {
-            if(res.data.code===200){
-                let data = res.data.data;
-                return dispatch({
-                    type:'GETNEWS',
-                    newsdata:data
-                })
-            }
+export const getNewsData = (data)=> dispatch=> {
+    return getNews(data).then(res => {
+        let data = res.data.data;
+        dispatch({
+            type:'GETNEWS',
+            newsdata:data
         })
-    }
+        return res.data;
+    })
+};
+export const getNewsDataPage = (data)=> dispatch=> {
+    return getNews(data).then(res => {
+        let data = res.data.data;
+        dispatch({
+            type:'GETNEWSPAGE',
+            newsdata:data
+        })
+        return res.data;
+    })
 };
 
 

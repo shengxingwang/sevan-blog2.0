@@ -30,6 +30,7 @@
 					$this->getArtDet();
 					break;
 				case 'addArtcle':
+						$this->checkToken();
 						$this->addArtcle();
 					break;
 				case 'delArt':
@@ -42,12 +43,26 @@
 					$this->lookCount();
 					break;
                 case 'addNews':
-						// $this->checkToken();
-						$this->addNews();
+					$this->checkToken();
+					$this->addNews();
 					break;
 				case 'getNews':
-				// $this->checkToken();
-				$this->getNews();
+					$this->getNews();
+					break;
+				case 'getNewsAdmin':
+					$this->getNewsAdmin();
+					break;
+				case 'hideNews':
+					$this->checkToken();
+					$this->hideNews();
+					break;
+				case 'showNews':
+					$this->checkToken();
+					$this->showNews();
+					break;
+				case 'delNews':
+					$this->checkToken();
+					$this->delNews();
 					break;
 				case 'getTaglist':
 						$this->getTaglist();
@@ -56,52 +71,29 @@
 					$this->getAllTag();
 					break;
                 case 'addTag':
-						// $this->checkToken();
-						$this->addTag();
+					$this->checkToken();
+					$this->addTag();
 					break;
 				case 'upTag':
-					// $this->checkToken();
+					$this->checkToken();
 					$this->upTag();
 					break;
 				case 'delTag':
-					// $this->checkToken();
+					$this->checkToken();
 					$this->delTag();
 					break;
 				case 'getDateData':
-					// $this->checkToken();
 					$this->getDateData();
 					break;
-				case 'getStatus':
-					// $this->checkToken();
-					$this->getStatus();
+				case 'getTouchList':
+					$this->getTouchList();
 					break;
-				case 'upInfo':
-						$this->checkToken();
-						$this->upInfo();
-					break;
-				case 'upExpre':
-						$this->checkToken();
-						$this->upExpre();
+				case 'addTouch':
+					$this->addTouch();
 					break;
 				case 'delTouch':
 						$this->checkToken();
 						$this->delTouch(1);
-					break;
-				case 'delAllTouch':
-						$this->checkToken();
-						$this->delTouch(2);
-					break;
-				case 'delNews':
-						$this->checkToken();
-						$this->delNews(1);
-					break;
-				case 'delAllNews':
-						$this->checkToken();
-						$this->delNews(2);
-					break;
-				case 'delExpre':
-						$this->checkToken();
-						$this->delExpre();
 					break;
 				case 'addlocal':
 						$this->addlocal();
@@ -113,8 +105,12 @@
 		}
 		//验证Token
 		public function checkToken(){
-			if(!empty($_POST["token"])){
-				$token = $_POST["token"];
+			  //获取头部信息end
+			if (strtolower($_SERVER['REQUEST_METHOD']) == 'options') {
+				return;
+			}
+			if(!empty($_SERVER['HTTP_AUTHORIZATION'])){
+				$token = $_SERVER['HTTP_AUTHORIZATION'];
 				$userid = $this->tk->getToken($token);
 				if(!$userid){
 					$this->code = 900;
@@ -423,8 +419,24 @@
 			}
 			$this->reponseFun();
 		}
-		//获取动态列表
+		//获取显示动态列表
 		public function getNews(){
+			$sql = 'select * from blog_news where isshow=1 order by ptime DESC';
+			$page = isset($_GET['page'])?$_GET['page']:1;
+			$offset = isset($_GET['offset'])?$_GET['offset']:10;
+			$res = $this->db->getOffset('blog_news',$sql, $offset, $page);
+			if($res){
+				$this->data = $res;
+				$this->code = 200;
+				$this->msg = 'success!';
+			}else{
+				$this->code = 405;
+				$this->msg = 'error！';
+			}
+			$this->reponseFun();
+		}
+		//获取全部动态列表
+		public function getNewsAdmin(){
 			$sql = 'select * from blog_news order by ptime DESC';
 			$page = isset($_GET['page'])?$_GET['page']:1;
 			$offset = isset($_GET['offset'])?$_GET['offset']:10;
@@ -439,7 +451,61 @@
 			}
 			$this->reponseFun();
 		}
+		//隐藏动态
+		public function hideNews(){
+			$table = 'blog_news';
+			$id = isset($_POST['id'])?$_POST['id']:$this->reponseFun();
+			
+			$tj = "where nid = '$id'";
 
+			$dataArr = array(
+				'isshow'=>2,
+			);
+			$res = $this->db->updateRow($table, $dataArr, $tj);
+			if($res){
+				$this->code = 200;
+				$this->msg = '数据更新成功！';
+			}else{
+				$this->code = 405;
+				$this->msg = '数据更新失败！';
+			}
+			$this->reponseFun();
+		}
+		//显示动态
+		public function showNews(){
+			$table = 'blog_news';
+			$id = isset($_POST['id'])?$_POST['id']:$this->reponseFun();
+			
+			$tj = "where nid = '$id'";
+
+			$dataArr = array(
+				'isshow'=>1,
+			);
+			$res = $this->db->updateRow($table, $dataArr, $tj);
+			if($res){
+				$this->code = 200;
+				$this->msg = '数据更新成功！';
+			}else{
+				$this->code = 405;
+				$this->msg = '数据更新失败！';
+			}
+			$this->reponseFun();
+		}
+		//删除动态
+		public function delNews(){
+			$table = 'blog_news';
+			$id = $_POST['id'];
+			$tj = "where nid = '$id'";
+			$res = $this->db->delRow($table, $tj);
+			if($res){
+				$this->code = 200;
+				$this->msg = '数据删除成功！';
+			}else{
+				$this->code = 405;
+				$this->msg = '数据删除失败！';
+			}
+			$this->reponseFun();
+		}
 		//获取归档数据
 		public function getDateData(){
 			$sql = "select date_format(`create_at`,'%Y/%m') as create_at, group_concat(concat_ws('-', title, aid) separator '|')title, count(*) as cnt from blog_list group by date_format(`create_at`,'%Y/%m')";
@@ -462,56 +528,6 @@
 			$offset = isset($_GET['offset'])?$_GET['offset']:10;
 			$order = "order by cloudzan";
 			$res = $this->db->getOffset('cloud_comment',$sql, $offset, $page, $order);
-			if($res){
-				$this->data = $res;
-				$this->code = 200;
-				$this->msg = 'success!';
-			}else{
-				$this->code = 405;
-				$this->msg = 'error！';
-			}
-			$this->reponseFun();
-		}
-		
-		//获取经历信息
-		public function getExpre(){
-			$sql = 'select * from blog_exper order by top';
-			$res = $this->db->getAll($sql);
-			if($res){
-				if(is_array($res)){
-					$this->data = $res;
-				}
-				$this->code = 200;
-				$this->msg = 'success!';
-			}else{
-				$this->code = 405;
-				$this->msg = 'error！';
-			}
-			$this->reponseFun();
-		}
-		//获取留言列表
-		public function getTouchList()
-		{
-			$sql = 'select * from blog_touch';
-			$page = isset($_GET['page'])?$_GET['page']:1;
-			$offset = isset($_GET['offset'])?$_GET['offset']:10;
-			$res = $this->db->getOffset('blog_touch',$sql, $offset, $page);
-			if($res){
-				$this->data = $res;
-				$this->code = 200;
-				$this->msg = 'success!';
-			}else{
-				$this->code = 405;
-				$this->msg = 'error！';
-			}
-			$this->reponseFun();
-		}
-		//获取个人信息
-		public function getInfo()
-		{
-			$id = $_POST['uid'];
-			$sql = "select * from blog_info where id = $id";
-			$res = $this->db->getRow($sql);
 			if($res){
 				$this->data = $res;
 				$this->code = 200;
@@ -558,6 +574,24 @@
 	        curl_close ( $curl );
 	        return $res;
 		}
+		
+		//获取留言列表
+		public function getTouchList()
+		{
+			$sql = 'select * from blog_touch';
+			$page = isset($_GET['page'])?$_GET['page']:1;
+			$offset = isset($_GET['offset'])?$_GET['offset']:10;
+			$res = $this->db->getOffset('blog_touch',$sql, $offset, $page);
+			if($res){
+				$this->data = $res;
+				$this->code = 200;
+				$this->msg = 'success!';
+			}else{
+				$this->code = 405;
+				$this->msg = 'error！';
+			}
+			$this->reponseFun();
+		}
 		//添加联系信息
 		public function addTouch()
 		{
@@ -588,67 +622,6 @@
 			$this->reponseFun();
 		}
 		
-		
-		//修改个人信息
-		public function upInfo(){
-			$table = 'blog_info';
-			$id = 940819;
-			$uname = isset($_POST['uname'])?$_POST['uname']:$this->reponseFun();
-			$headimg = isset($_POST['headimg'])?$_POST['headimg']:$this->reponseFun();
-			$birthday = isset($_POST['birthday'])?$_POST['birthday']:$this->reponseFun();
-			$objective = isset($_POST['objective'])?$_POST['objective']:$this->reponseFun();
-			$email = isset($_POST['email'])?$_POST['email']:$this->reponseFun();
-			$degree = isset($_POST['degree'])?$_POST['degree']:$this->reponseFun();
-			$profiles = isset($_POST['profiles'])?$_POST['profiles']:$this->reponseFun();
-
-			$dataArr = array(
-				'uname'=>$uname,
-				'headimg'=>$headimg,
-				'birthday'=>$birthday,
-				'objective'=>$objective,
-				'email'=>$email,
-				'degree'=>$degree,
-				'profiles'=>$profiles
-			);
-			$res = $this->db->updateRow($table, $dataArr, $id);
-			if($res){
-				$this->code = 200;
-				$this->msg = '数据更新成功！';
-			}else{
-				$this->code = 405;
-				$this->msg = '数据更新失败！';
-			}
-			$this->reponseFun();
-		}
-		//修改个人经历
-		public function upExpre(){
-			$table = 'blog_exper';
-			$id = isset($_POST['id'])?$_POST['id']:$this->reponseFun();
-			$comp = isset($_POST['comp'])?$_POST['comp']:$this->reponseFun();
-			$start = isset($_POST['start'])?$_POST['start']:$this->reponseFun();
-			$end = isset($_POST['end'])?$_POST['end']:$this->reponseFun();
-			$expre = isset($_POST['expre'])?$_POST['expre']:$this->reponseFun();
-			$job = isset($_POST['job'])?$_POST['job']:$this->reponseFun();
-			$top = isset($_POST['top'])?$_POST['top']:$this->reponseFun();
-
-			$dataArr = array(
-				'comp'=>$comp,
-				'start'=>$start,
-				'end'=>$end,
-				'expre'=>$expre,
-				'job'=>$job,
-				'top'=>$top,
-			);
-			$res = $this->db->updateRow($table, $dataArr, $id);
-			if($res){
-				$this->code = 200;
-				$this->msg = '数据更新成功！';
-			}else{
-				$this->code = 405;
-				$this->msg = '数据更新失败！';
-			}
-			$this->reponseFun();
-		}
 		//删除联系留言
 		public function delTouch($type){
 			$table = 'blog_touch';
@@ -670,42 +643,27 @@
 			}
 			$this->reponseFun();
 		}
-		//删除经历
-		public function delExpre(){
-			$table = 'blog_exper';
-			$id = $_POST['id'];
-			$tj = "where id = $id";
-			$res = $this->db->delRow($table, $tj);
-			if($res){
-				$this->code = 200;
-				$this->msg = '数据删除成功！';
-			}else{
-				$this->code = 405;
-				$this->msg = '数据删除失败！';
-			}
-			$this->reponseFun();
-		}
-		//删除动态
-		public function delNews($type){
-			$table = 'blog_news';
-			$id = $_POST['nid'];
-			$tj ='';
-			if($type==1){
-				$tj = "where nid = $id";
-			}else{
-				$idstr = implode("','",$id);
-				$tj = "where nid in ('{$idstr}')";
-			}
-			$res = $this->db->delRow($table, $tj);
-			if($res){
-				$this->code = 200;
-				$this->msg = '数据删除成功！';
-			}else{
-				$this->code = 405;
-				$this->msg = '数据删除失败！';
-			}
-			$this->reponseFun();
-		}
+		//批量删除动态
+		// public function delNews($type){
+		// 	$table = 'blog_news';
+		// 	$id = $_POST['nid'];
+		// 	$tj ='';
+		// 	if($type==1){
+		// 		$tj = "where nid = $id";
+		// 	}else{
+		// 		$idstr = implode("','",$id);
+		// 		$tj = "where nid in ('{$idstr}')";
+		// 	}
+		// 	$res = $this->db->delRow($table, $tj);
+		// 	if($res){
+		// 		$this->code = 200;
+		// 		$this->msg = '数据删除成功！';
+		// 	}else{
+		// 		$this->code = 405;
+		// 		$this->msg = '数据删除失败！';
+		// 	}
+		// 	$this->reponseFun();
+		// }
 
 		//添加定位信息
 		public function addlocal()

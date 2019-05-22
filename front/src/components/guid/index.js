@@ -20,6 +20,7 @@ class Guid extends Component{
                             <li className={path==="/my/arthome"?'active':''}><Link to="/my/arthome">文章</Link></li>
                             <li className={path==="/my/filelog"?'active':''}><Link to="/my/filelog">归档</Link></li>
                             <li className={path==="/my/about"?'active':''}><Link to="/my/about">关于</Link></li>
+                            <li className={path==="/my/feedme"?'active':''}><Link to="/my/feedme">留言</Link></li>
                         </ul>
                     </div>
                 </div>

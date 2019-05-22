@@ -12,6 +12,7 @@ const art = asyncComponent(() => import('./../art'));
 const about = asyncComponent(() => import('./../about'));
 const filelog = asyncComponent(() => import('./../filelog'));
 const artItem = asyncComponent(() => import('../artItem'));
+const feed = asyncComponent(() => import('../feed'));
 
 class My extends Component{
     constructor(prop){
@@ -31,6 +32,7 @@ class My extends Component{
                     <Route exact path='/my/about' component={about} />
                     <Route exact path='/my/filelog' component={filelog} />
                     <Route exact path='/my/itemArt/:id' component={artItem} />
+                    <Route exact path='/my/feedme' component={feed} />
                     <Route component={Errpage} />
                 </Switch>
             </Guid>

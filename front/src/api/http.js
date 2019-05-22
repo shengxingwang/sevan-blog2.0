@@ -23,12 +23,9 @@ axios.interceptors.request.use(config => {
 
 //
 axios.interceptors.response.use(response => {
-        // if(response.data.code!==200){
-        //     console.log(response);
-        // }
-        // if(response.data.code===405){
-        //
-        // }
+        if(response.data.code!==200){
+            console.error("服务器错误！")
+        }
         return response;
     },
     error => {

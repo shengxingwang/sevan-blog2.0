@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import './style.css'
 import propTypes from 'prop-types';
 import {connect} from 'react-redux';
-import { getNewsData } from "../../store/actions";
+import { getNewsData, getNewsDataPage } from "../../store/actions";
 
 class About extends Component{
     constructor(props){
@@ -10,6 +10,8 @@ class About extends Component{
         this.state = {
             showImg:false,
             viewImg:'',
+            page:1,
+            totalPage:1
         };
         // this.preview = this.preview.bind(this)
     }
@@ -17,9 +19,43 @@ class About extends Component{
         newsData:propTypes.object.isRequired,
         // getExpreData:propTypes.func.isRequired,
     };
+
+    scrollLoad(){
+        let wrap = document.querySelector(".wrap");
+        let flag = true;
+        wrap.addEventListener("scroll",() =>{
+            let totalH = wrap.scrollHeight;
+            let scrollH = wrap.scrollTop;
+            let wrapH = wrap.offsetHeight;
+            if((scrollH+wrapH)+40>totalH&&flag&&parseInt(this.state.totalPage)>parseInt(this.state.page)){
+                flag = false;
+                this.setState({
+                    page:parseInt(this.state.page)+1
+                })
+                this.props.getNewsDataPage(this.state).then( res => {
+                    if(res.code===200){
+                        flag = true;
+                        const { page, totalPage } = res.data;
+                        this.setState({
+                            page,
+                            totalPage
+                        })
+                    }
+                });
+            }
+        })
+    }
+
     componentDidMount(){
         // this.props.getInfoData({uid:this.state.uid});
-        this.props.getNewsData();
+        this.props.getNewsData().then( res => {
+            const { page, totalPage } = res.data;
+            this.setState({
+                page,
+                totalPage
+            })
+        });
+        this.scrollLoad();
     };
     preview(url,e){
        this.setState({
@@ -43,7 +79,7 @@ class About extends Component{
         let { viewImg } = this.state;
         const imgview = (
             this.state.showImg?
-            <div className="mask">
+            <div className="imgmask">
                 <div className="dilog">
                     <span className="closebtn" onClick={this.closeDiolg.bind(this)}></span>
                     <img src={viewImg} alt="放大图"></img>
@@ -98,9 +134,10 @@ class About extends Component{
                                                 <li className="item" key={item.nid}>
                                                         <p className='icon-t'>{item.ptime}</p>
                                                         <div className="con-txt">{item.ndesc}</div>
+                                                        {item.turnUrl ? <p className="turnlink"><span>链接：</span><a href={item.turnUrl}>{item.turnUrl}</a></p> : null}
                                                         <div className="newimg">
                                                         {
-                                                            item.imgurl.split("|").length ? item.imgurl.split("|").map( (item, i) => 
+                                                            item.imgurl.length ? item.imgurl.split("|").map( (item, i) => 
                                                                 <div key={i} className="imgitem" onClick={this.preview.bind(this,item)} ><img alt="newsimg" src={item}></img></div>
                                                             ):null
                                                         }
@@ -128,6 +165,6 @@ class About extends Component{
 export default connect(state=>({
     newsData:state.newsData
 }),{
-    // getInfoData,
-    getNewsData
+    getNewsData,
+    getNewsDataPage
 })(About);

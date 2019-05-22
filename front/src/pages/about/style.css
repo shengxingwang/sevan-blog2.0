@@ -47,6 +47,15 @@
     font-size: 18px;
     border-bottom: 1px solid #adadad;
 }
+.about .rig-info .turnlink{
+    line-height: 26px;
+    color: #999;
+    font-size: 14px;
+}
+.about .rig-info .turnlink a{
+    color: #10BDA1;
+}
+
 .about .rig-info .newimg{
     width: 100%;
     display: flex;
@@ -194,7 +203,7 @@
     70% {left:-26px; top:-150px;}
     100% {left:-27px; top:-206px;}
 }
-.mask{
+.imgmask{
     position: fixed;
     left: 0;
     top:0;

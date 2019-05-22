@@ -48,6 +48,7 @@ class ArticleList extends Component {
       {
         title: '编辑',
         key: 'id',
+        width: 300,
         render: (text, record) => (
           <span>
             <a href={`http://localhost:3000/#/my/itemArt/${record.aid}`} target="_brank">查看</a>
@@ -78,11 +79,11 @@ class ArticleList extends Component {
     this.props.getArticle({page: this.state.page})
   }
   render () {
-
-    const {list=[], totalPage={}} = this.props.article.articleList;
-    console.log(this.props.article);
-    const page = {
-      total: totalPage || 0
+    const {list=[], totalPage=1, count = 1} = this.props.article.articleList;
+    const pageconfig = {
+        defaultCurrent: 1,
+        defaultPageSize: 10,
+        total: count
     }
     const columns = this.columns
     return (
@@ -91,7 +92,7 @@ class ArticleList extends Component {
           onChange={this.change} 
           columns={columns} 
           dataSource={list} 
-          pagination = {page}
+          pagination = {pageconfig}
           rowKey={record => record.id}
         />
       </Layout>

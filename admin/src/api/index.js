@@ -9,7 +9,7 @@ export const upFile = (params={}) => {
 
 //登录
 export const login = (params={}) => {
-    return  http.post('login', { ...params });
+    return  http.post('loginout.php?action=login', { ...params });
 }
 
 //获取文章列表
@@ -70,3 +70,22 @@ export const putNews = (params={}) => {
     return http.post('blog.php?action=addNews', { ...params });
 
 }
+
+//获取动态
+export const getNews = (params={}) => {
+    return http.get('blog.php?action=getNewsAdmin', { params });
+
+}
+//隐藏动态
+export const hideNews = (params={}) => {
+    return http.post('blog.php?action=hideNews', { ...params });
+}
+//删除动态
+export const delNews = (params={}) => {
+    return http.post('blog.php?action=delNews', { ...params });
+}
+//显示动态
+export const showNews = (params={}) => {
+    return http.post('blog.php?action=showNews', { ...params });
+}
+

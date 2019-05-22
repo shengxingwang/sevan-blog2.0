@@ -11,18 +11,16 @@ class Login extends Component {
 		e.preventDefault()
 		this.props.form.validateFields((err, values) => {
 		  if (!err) {
-				console.log('Received values of form: ', values)
-				// this.toLogin(values)
-				this.props.history.push('/home');
+				this.toLogin(values)
 		  }
 		})
 	}
 	async toLogin (prams) {
-		const {username, password} = prams;
-		const res = await login({username, password})
-		if (res.code === 1) {
-			window.localStorage.setItem('TOKEN', JSON.stringify(res.result))
-			this.props.history.push('/home')
+		const {userid, pwd} = prams;
+		const res = await login({userid, pwd})
+		if (res.code === 200) {
+			window.sessionStorage.setItem('TOKEN', res.data.token);
+			this.props.history.push('/home');
 		}
 	}
   render() {
@@ -33,14 +31,14 @@ class Login extends Component {
 				<div className="loginContent">
 					<Form onSubmit={this.handleSubmit} className="loginForm">
 						<FormItem>
-							{getFieldDecorator('username', {
+							{getFieldDecorator('userid', {
 								rules: [{ required: true, message: '请输入你的用户名!' }],
 							})(
 								<Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="请输入你的用户名" />
 							)}
 						</FormItem>
 						<FormItem>
-							{getFieldDecorator('password', {
+							{getFieldDecorator('pwd', {
 								rules: [{ required: true, message: '请输入你的密码!' }],
 							})(
 								<Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="请输入你的密码" />

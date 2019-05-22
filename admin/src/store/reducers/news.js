@@ -1,5 +1,5 @@
 const initialState = {
-    articleList: {
+    newsData: {
         count: 1,
         list:[],
         offset: 10,
@@ -8,14 +8,14 @@ const initialState = {
     }
   }
 
-export const GETARTICLES = 'GETARTICLES';
+export const GETNEWS = 'GETNEWS';
 
-const article = (state = initialState, action)=>{
+const newsData = (state = initialState, action)=>{
     switch (action.type) {
-        case GETARTICLES:
+        case GETNEWS:
             return {...state,...action};
         default:
             return state;
     }
 };
-export default article;
+export default newsData;
