@@ -153,11 +153,8 @@ class Tag extends Component {
     }
   }
   edit(id) {
-    console.log(this.state.data);
     const list = this.state.data||[];
-    console.log(list);
     const target = list.filter(item => id === item.tid)[0]
-    console.log(target);
     if (target) {
       target.editable = true
       this.setState({ data:list}) 
@@ -173,9 +170,7 @@ class Tag extends Component {
   async save(record) {
     const { tid } = record
     const newData =this.state.data||[];
-    console.log(newData+"--"+tid);
     const target = newData.filter(item => tid === item.tid)[0]
-    console.log(target);
     if (target) {
       delete target.editable
       const {tag, descript} = target
@@ -189,7 +184,6 @@ class Tag extends Component {
   cancel(id) {
     const newData = this.state.data||[];
     const target = newData.filter(item => id === item.tid)[0]
-    console.log(target);
     if (target) {
       Object.assign(target, this.cacheData.filter(item => id === item.tid)[0])
       delete target.editable

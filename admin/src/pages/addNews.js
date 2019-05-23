@@ -6,15 +6,13 @@ import {
     Upload,
     Icon,
     Modal,
-    Select,
     AutoComplete,
     message
   } from 'antd';
   import axios from 'axios';
   import{ imgUpURL } from './../config'
-  import { upFile, putNews } from './../api'
+  import { putNews } from './../api'
   
-  const { Option } = Select;
   const AutoCompleteOption = AutoComplete.Option;
 
   class addNews extends Component {
@@ -52,7 +50,6 @@ import {
         formData.append("file", file);
         axios.post(imgUpURL,formData,config).then(res=>{
             let data = res.data; 
-            console.log(data);
             if(data.code===200){
                 let url = data.data;
                 let obj = {
@@ -61,8 +58,7 @@ import {
                 }
                 this.state.fileUrlArr.push(url)
                 this.state.fileList.push(obj);
-                console.log(this.state.fileList);
-                this.state.fileList.map((v, i) => {
+                this.state.fileList.map( (v, i) => {
                   v.name = "nesimg"+i;
                   v.uid = i;
                 })
@@ -84,7 +80,6 @@ import {
           let { fileUrlArr } = this.state;
           values.imgurl = fileUrlArr.join("|");
           putNews(values).then( res => {
-              console.log(res);
               if(res.code===200){
                 message.success('发布成功！');
                 this.props.form.resetFields();

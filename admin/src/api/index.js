@@ -3,7 +3,6 @@ import { imgUpURL } from './../config'
 
 //文件上传
 export const upFile = (params={}) => {
-    console.log(params);
     return  http.post(imgUpURL, {...params});
 }
 
@@ -50,7 +49,6 @@ export const fetchTag = (params={}) => {
 }
 //添加标签
 export const addTag = (params={}) => {
-    console.log(params);
     return http.post('blog.php?action=addTag', { ...params });
 
 }
@@ -87,5 +85,14 @@ export const delNews = (params={}) => {
 //显示动态
 export const showNews = (params={}) => {
     return http.post('blog.php?action=showNews', { ...params });
+}
+
+//获取留言
+export const getMsg = (params={}) => {
+    return http.get('blog.php?action=getTouchList', { ...params });
+}
+//删除留言
+export const delMsg = (params={}) => {
+    return http.post('blog.php?action=delTouch', { ...params });
 }
 

@@ -44,3 +44,7 @@ export const getCouldData = (data)=> {
 export const putTouch = (data)=> {
     return post('/sevanBlog/blog.php?action=addTouch',data);
 };
+//获取留言
+export const getTouch = (data)=> {
+    return post('/sevanBlog/blog.php?action=getTouchList',data);
+};

@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react'
-import { Input, Select, Button, message } from 'antd'
+import { Input, Button, message } from 'antd'
 import { connect } from 'react-redux'
 import Layout from '../components/layout'
 import Editor from '../components/markdowm'
@@ -10,7 +10,6 @@ import { getTag } from '../store/actions/taglist';
 import '../static/less/article.less'
 
 const { TextArea } = Input;
-const Option = Select.Option;
 let eTimer = null
 class addArticleComponent extends Component {
   constructor(props){

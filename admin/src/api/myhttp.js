@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { message, Modal  } from 'antd';
+import { message } from 'antd';
 import * as config from '../config';
 import qs from 'qs';
 
-const confirm = Modal.confirm;
+// const confirm = Modal.confirm;
 const http = axios.create({
     baseURL: config.API_ROOT
 });

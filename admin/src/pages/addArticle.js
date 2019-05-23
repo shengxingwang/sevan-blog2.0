@@ -58,7 +58,6 @@ class addArticleComponent extends Component {
   }
   render () {
     const list = this.props.tagData.tags||[];
-    console.log(list);
     return (
       <Layout history={this.props.history}>
         {/* <SubTitle title="新增文章" /> */}

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Table, Divider, message, Button } from 'antd';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getArticle, delectArticle } from '../store/actions/article';
+import { getMsgList, delMsgItem } from '../store/actions/msglist';
 import Layout from '../components/layout';
 
 const toDate = str => {
@@ -10,7 +10,7 @@ const toDate = str => {
   return `${date.getFullYear()} -${date.getMonth()+1}- ${date.getDate()}`
 }
 
-class ArticleList extends Component {
+class msgList extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -19,43 +19,47 @@ class ArticleList extends Component {
     this.change = this.change.bind(this)
     this.columns = [
       {
-        title: '标题',
-        dataIndex: 'title',
-        key: 'title',
-        width: 300,
+        title: '称呼',
+        dataIndex: 'nick',
+        key: 'nick',
+        width:200,
         render: text => <span>{text}</span>,
       }, 
       {
-        title: '日期',
-        dataIndex: 'update_at',
-        width: 200,
-        key: 'update_at',
-        render: text => <span>{toDate(text)}</span>,
+        title: '内容',
+        dataIndex: 'feed',
+        width: 300,
+        key: 'feed',
+        render: text => <span>{text}</span>,
       }, 
       {
-        title: '标签',
-        width: 250,
-        dataIndex: 'tag',
-        key: 'tag',
-        render: arr=> (
-          <span>
-            {arr.split("|").map(item => 
-              <i key={item} style={{paddingRight: '15px'}}>{item}</i>
-            )}
-          </span>
-        )
+        title: '邮箱',
+        width: 300,
+        dataIndex: 'email',
+        key: 'email',
+        render: text => <span>{text}</span>,
       },
+      {
+        title: '网址',
+        width: 300,
+        dataIndex: 'friendlink',
+        key: 'friendlink',
+        render: text => <span>{text}</span>,
+      },
+      {
+        title: '日期',
+        dataIndex: 'mtime',
+        width: 300,
+        key: 'mtime',
+        render: text => <span>{toDate(text)}</span>,
+      }, 
       {
         title: '编辑',
         key: 'id',
         width: 300,
         render: (text, record) => (
           <span>
-            <a href={`http://localhost:3000/#/my/itemArt/${record.aid}`} target="_brank">查看</a>
-            <Divider type="vertical" />
-            <Link to={`/home/edite/${record.aid}`}>修改</Link>
-            <Divider type="vertical" />
-            <Button type="danger" size="small" onClick={() => this.del(record.aid)} >删除</Button>
+            <Button type="danger" size="small" onClick={() => this.del(record.id)} >删除</Button>
           </span>
         ),
       }
@@ -63,23 +67,23 @@ class ArticleList extends Component {
   }
 
   async del(id) {
-    const res = await delectArticle({id:id})
+    const res = await delMsgItem({id:id})
     if (res.code === 200) {
       message.success(res.msg)
-      this.props.getArticle({page: this.state.page})
+      this.props.getMsgList({page: this.state.page})
     }
   }
   change (page) {
-    this.props.getArticle({page: page.current})
+    this.props.getMsgList({page: page.current})
     this.setState({
       page: page.current
     })
   }
   componentWillMount () {
-    this.props.getArticle({page: this.state.page})
+    this.props.getMsgList({page: this.state.page})
   }
   render () {
-    const {list=[], count = 1} = this.props.article.articleList;
+    const {list=[], count = 1} = this.props.msgData.msgData;
     const pageconfig = {
         defaultCurrent: 1,
         defaultPageSize: 10,
@@ -101,10 +105,11 @@ class ArticleList extends Component {
 }
 
 
-const mapStateToProps = ({ article }) => ({ article })
+const mapStateToProps = ({ msgData }) => ({ msgData })
 
 const mapDispatchToProps = {
-   getArticle
+   getMsgList,
+   delMsgItem
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArticleList)
+export default connect(mapStateToProps, mapDispatchToProps)(msgList)

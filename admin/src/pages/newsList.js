@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Table, Divider, message, Button } from 'antd';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getNewList, hideNewsItem, showNewsItem, delNewsItem } from '../store/actions/news';
 import Layout from '../components/layout';
@@ -90,7 +90,6 @@ class newsList extends Component {
     }
   }
   change (page) {
-    console.log(page);
     this.props.getNewList({page: page.current})
     this.setState({
       page: page.current
@@ -100,7 +99,7 @@ class newsList extends Component {
     this.props.getNewList({page: this.state.page})
   }
   render () {
-    const {list=[], totalPage=1, count = 1} = this.props.newsData.newsData;
+    const {list=[], count = 1} = this.props.newsData.newsData;
     const pageconfig = {
         defaultCurrent: 1,
         defaultPageSize: 10,

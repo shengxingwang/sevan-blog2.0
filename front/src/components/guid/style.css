@@ -7,7 +7,8 @@
     overflow: hidden;
     background: #fff;
     z-index:999;
-    border-bottom:1px solid #acacac;
+    /* border-bottom:1px solid #acacac; */
+    box-shadow:0 0 8px #bbb;
 }
 .navBar .bar{
     display: flex;

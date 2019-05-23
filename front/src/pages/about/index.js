@@ -122,6 +122,10 @@ class About extends Component{
                                     <span className="t iconfont">&#xe646;</span>
                                     <span className="v">总有一个意外，给你带来精彩</span>
                                 </p>
+                                <p className="item">
+                                    <span className="t iconfont">&#xe769;</span>
+                                    <span className="v">Shenzhen • Vanke</span>
+                                </p>
                             </div>
                         </div>
                         <div className="rig-info">

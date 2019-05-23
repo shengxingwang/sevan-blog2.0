@@ -53,12 +53,12 @@ body {
 
   @font-face {
     font-family: 'iconfont';  /* project id 1192091 */
-    src: url('//at.alicdn.com/t/font_1192091_5xx6tmco2kh.eot');
-    src: url('//at.alicdn.com/t/font_1192091_5xx6tmco2kh.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_1192091_5xx6tmco2kh.woff2') format('woff2'),
-    url('//at.alicdn.com/t/font_1192091_5xx6tmco2kh.woff') format('woff'),
-    url('//at.alicdn.com/t/font_1192091_5xx6tmco2kh.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_1192091_5xx6tmco2kh.svg#iconfont') format('svg');
+    src: url('//at.alicdn.com/t/font_1192091_tjrk1vghvpa.eot');
+    src: url('//at.alicdn.com/t/font_1192091_tjrk1vghvpa.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_1192091_tjrk1vghvpa.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_1192091_tjrk1vghvpa.woff') format('woff'),
+    url('//at.alicdn.com/t/font_1192091_tjrk1vghvpa.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_1192091_tjrk1vghvpa.svg#iconfont') format('svg');
   }
 
   .iconfont{
@@ -109,6 +109,11 @@ body {
     background: #f5f5f5;
     margin-bottom: 30px;
   }
-  
+  .tip{
+    width: 100%;
+    line-height: 42px;
+    color: #999;
+    text-align: center;
+}
   /*statu-item*/
   

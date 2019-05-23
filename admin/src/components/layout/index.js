@@ -50,7 +50,6 @@ class MLayout extends Component {
 
     render() {
       let { path,mkey } = this.props.layData.path;
-      console.log(mkey+"="+path)
       return (
         <Layout className="gwrap">
           <Layout>

@@ -596,18 +596,16 @@
 		public function addTouch()
 		{
 			$table = 'blog_touch';
-			$touchType = isset($_POST['touchType'])?$_POST['touchType']:$this->reponseFun();
-			$uname = isset($_POST['uName'])?$_POST['uName']:$this->reponseFun();
-			$msgtxt = isset($_POST['msgtxt'])?$_POST['msgtxt']:$this->reponseFun();
-			$comp = isset($_POST['comp'])?$_POST['comp']:'';
-			$job = isset($_POST['job'])?$_POST['job']:'';
+			$nick = isset($_POST['nick'])?$_POST['nick']:$this->reponseFun();
+			$email = isset($_POST['email'])?$_POST['email']:$this->reponseFun();
+			$friendlink = isset($_POST['friendlink'])?$_POST['friendlink']:'';
+			$feed = isset($_POST['feed'])?$_POST['feed']:$this->reponseFun();
 
 			$dataArr = array(
-				'uname'=>$uname,
-				'msgtxt'=>$msgtxt,
-				'touchType'=>$touchType,
-				'comp'=>$comp,
-				'job'=>$job
+				'nick'=>$nick,
+				'email'=>$email,
+				'friendlink'=>$friendlink,
+				'feed'=>$feed
 			);
 
 			$res = $this->db->insertRow($table, $dataArr);
@@ -623,16 +621,10 @@
 		}
 		
 		//删除联系留言
-		public function delTouch($type){
+		public function delTouch(){
 			$table = 'blog_touch';
-			$id = $_POST['tid'];
-			$tj ='';
-			if($type==1){
-				$tj = "where tid = $id";
-			}else{
-				$idstr = implode("','",$id);
-				$tj = "where tid in ('{$idstr}')";
-			}
+			$id = $_POST['id'];
+			$tj = "where id = $id";
 			$res = $this->db->delRow($table, $tj);
 			if($res){
 				$this->code = 200;

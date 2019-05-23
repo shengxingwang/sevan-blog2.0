@@ -1,0 +1,120 @@
+.feed-box{
+    width: 100%;
+    background: #fff;
+    padding:20px 0;
+}
+.feedBtn{
+    width: 100%;
+    text-align: center;
+    padding:10px 0;
+    overflow: hidden;
+}
+.feedBtn button{
+    cursor: pointer;
+    padding: 4px 14px;
+    border-radius: 6px;
+    background: #fff;
+    border: 1px solid #10BDA1;
+    color: #10BDA1;
+}
+.feedBtn button:hover{
+    background: #10BDA1;
+    color: #fff;
+}
+.feedlist{
+    width: 100%;
+    overflow: hidden;
+    padding: 20px;
+}
+.feedlist .item{
+    position: relative;
+    float: left;
+    width: 30%;
+    padding: 10px;
+    height:200px;
+    margin: 0 1.66%;
+    box-shadow: 0 0 6px #ccc;
+    border-radius: 8px;
+}
+.feedlist .item .feedtxt{
+    font-size: 14px;
+    line-height: 22px;
+    color: #666;
+    text-indent: 2em;
+}
+.feedlist .item p{
+    width: 100%;
+    position: absolute;
+    bottom:0;
+    left: 0;
+    color: #999;
+    font-size: 12px;
+    text-align: right;
+    line-height: 22px;
+    padding: 10px;
+}
+.feedmask{
+    position: fixed;
+    left:0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index:999;
+    background: rgba(255, 255, 255, .9);
+    transition: all 1s;
+}
+.FeedLay{
+    position: absolute;
+    width: 600px;
+    height:180px;
+    background: #fff;
+    left:50%;
+    top: 50%;
+    margin-top: -90px;
+    margin-left: -300px;
+}
+.FeedLay .inp-box{
+    display: flex;
+    padding:10px 0;
+    overflow: hidden;
+    justify-content: space-between;
+}
+.FeedLay .inp-box input{
+    display: block;
+    width: 30%;
+    height:32px;
+    line-height: 36px;
+    border: 1px solid #ccc;
+}
+.FeedLay .feetinp textarea{
+    width: 100%;
+    height:80px;
+    line-height:26px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+.FeedLay .feetinp textarea:focus{
+    border: 1px solid #10BDA1;
+}
+.lay-footer{
+    width: 100%;
+    padding:10px 0;
+    text-align: right;
+}
+.lay-footer button{
+    cursor: pointer;
+}
+.lay-footer .save-btn{
+    padding: 4px 16px;
+    background: #10BDA1;
+    color: #fff;
+    border: none;
+}
+.lay-footer .cancel-btn{
+    padding: 4px 16px;
+    color: #999;
+    background: none;
+    margin-right: 20px;
+    border: 1px solid #999;
+}
