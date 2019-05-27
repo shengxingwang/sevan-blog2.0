@@ -57,7 +57,6 @@ class Shows extends Component{
         let scrllEle = event.target;
         let scrollH = scrllEle.scrollTop;
         let conH = scrllEle.firstChild.offsetHeight;
-        // console.log(scrollH+"--"+winH+"--"+conH);
         if(scrollH+winH>=conH-30&&this.props.commData.curPage<this.props.commData.totalPage&&this.reload){
             this.reload = false;
             this.page=this.props.commData.curPage+1;

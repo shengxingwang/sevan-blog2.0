@@ -9,7 +9,6 @@ class sideInfo extends Component{
     constructor(props){
         super(props);
         this.state = {
-            id:'',
             page:1,
             hotlist:[]
         }
@@ -26,11 +25,12 @@ class sideInfo extends Component{
         })
     }
     componentDidMount(){
-        // let tid = this.props.match.params.tid?this.props.match.params.tid:'';
         this.props.getTag();
     };
     render(){
+        
         let taglist = this.props.TagListData.TagListData.list||[];
+        console.log(this.props.TagListData.TagListData.list);
         let self=this;
         return(
                 <div className="right-con">
@@ -50,7 +50,7 @@ class sideInfo extends Component{
                             {
                                 taglist.length ? taglist.map(function(item,i){
                                     return (
-                                        <Link className={self.state.id===item.tid?'active':''} to={`/my/arthome/${item.tid}`} key={i}>{item.tag}({item.count})</Link>
+                                        <Link className={self.props.tid===item.tid?'active':''} to={`/my/arthome/${item.tid}`} key={i}>{item.tag}({item.count})</Link>
                                     )
                                 }):''
                             }

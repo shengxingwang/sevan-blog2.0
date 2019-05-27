@@ -1,13 +1,16 @@
 import React,{ Component } from 'react'
-import './style.css'
+import './style.css';
 
+var timer = null;
 class scrollBar extends Component{
     state = {
-        showFlag:false,
+        // showFlag:false,
+        name:"scroll"
     }
 
     backTop(){
-        let timer =  setInterval(() => {
+        clearInterval(timer);
+        timer =  setInterval(() => {
             let wrap = document.querySelector(".wrap");
             let dis = wrap.scrollTop;
             if(dis>0){
@@ -19,31 +22,26 @@ class scrollBar extends Component{
         
     }
 
-    scrollFun(){
-        let wrap = document.querySelector(".wrap");
-        wrap.addEventListener('scroll',()=>{
-            let sh = wrap.scrollTop||document.documentElement.scrollTop;
-            if(sh>200){
-                this.setState({
-                    showFlag:true
-                })
-            }else{
-                this.setState({
-                    showFlag:false
-                })
-            }
-        })
-    }
+    // scrollFun(){
+    //     let wrap = document.querySelector(".wrap");
+    //     wrap.addEventListener('scroll',()=>{
+    //         let sh = wrap.scrollTop;
+    //         if(sh>200){
+    //             this.setState({
+    //                 showFlag:true
+    //             })
+    //         }
+    //     })
+    // }
 
     componentDidMount(){
-        this.scrollFun();
     }
 
     render(){
         return (
-                this.state.showFlag ? <div className="scroll-box">
+                 <div className="scroll-box">
                     <div className="back-top" onClick={this.backTop.bind(this)}></div>
-                </div> : null
+                </div>
         )
     }
 }

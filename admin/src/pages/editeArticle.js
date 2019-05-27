@@ -44,11 +44,13 @@ class addArticleComponent extends Component {
   selectTag(id) {
     let arr = [...this.state.tag]
     let index = arr.indexOf(id)
+    console.log(arr);
     if (index >= 0) {
       arr.splice(index, 1)
     } else {
       arr.push(id)
     }
+    console.log(arr);
     this.setState({
       tag: arr
     })
@@ -65,7 +67,7 @@ class addArticleComponent extends Component {
     this.props.getTag()
     getArticleId({id:id}).then(res => {
       const { content,title, descript, editContent, keyword, tag } = res.data;
-      let _tag = tag.split("|").map(item =>item.split("-")[1]);
+      let _tag = tag ? tag.split("|").map(item =>item.split("-")[1]) : [];
       this.setState({
         id:id,
         content,

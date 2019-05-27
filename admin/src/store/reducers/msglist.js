@@ -11,7 +11,6 @@ const initialState = {
 export const GETMSG = 'GETMSG';
 
 const msgData = (state = initialState, action)=>{
-    console.log(action);
     switch (action.type) {
         case GETMSG:
             return {...state,...action};

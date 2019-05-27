@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import './style.css'
 import propTypes from 'prop-types';
 import {connect} from 'react-redux';
+import ScrollBar from './../../components/scrollTool';
 import { getNewsData, getNewsDataPage } from "../../store/actions";
 
 class About extends Component{
@@ -13,11 +14,9 @@ class About extends Component{
             page:1,
             totalPage:1
         };
-        // this.preview = this.preview.bind(this)
     }
     static propTypes = {
         newsData:propTypes.object.isRequired,
-        // getExpreData:propTypes.func.isRequired,
     };
 
     scrollLoad(){
@@ -29,10 +28,13 @@ class About extends Component{
             let wrapH = wrap.offsetHeight;
             if((scrollH+wrapH)+40>totalH&&flag&&parseInt(this.state.totalPage)>parseInt(this.state.page)){
                 flag = false;
-                this.setState({
-                    page:parseInt(this.state.page)+1
-                })
-                this.props.getNewsDataPage(this.state).then( res => {
+                let page = parseInt(this.state.page)+1;
+                if(scrollH>200){
+                    this.setState({
+                        isScroll:true
+                    })
+                }
+                this.props.getNewsDataPage({page:page}).then( res => {
                     if(res.code===200){
                         flag = true;
                         const { page, totalPage } = res.data;
@@ -47,7 +49,6 @@ class About extends Component{
     }
 
     componentDidMount(){
-        // this.props.getInfoData({uid:this.state.uid});
         this.props.getNewsData().then( res => {
             const { page, totalPage } = res.data;
             this.setState({
@@ -89,6 +90,7 @@ class About extends Component{
 
         return (
             <div className='art-home'>
+                <ScrollBar></ScrollBar>
                 { imgview }
                 <div className="container">
                     <div className="about">
@@ -148,14 +150,6 @@ class About extends Component{
                                                 </div></li>) : null
                                                 
                                         }
-                                        {/* <li className="item">
-                                            <p className='icon-t'>2019-23-4</p>
-                                            <div className="con-txt">asdasdasd案件搜低价爱谁就懂啊案件搜低价爱谁就懂啊哦啊死机案件搜低价爱谁就asdasdasd案件搜低价爱谁就懂啊案件搜低价爱谁就懂啊哦啊死机案件搜低价爱谁就懂啊哦啊死机案件搜低价爱谁就懂啊哦啊死机哦啊死机adadaasdasdasd案件搜低价爱谁就懂啊案件搜低价爱谁就懂啊哦啊死机案件搜低价爱谁就懂啊哦啊死机案件搜低价爱谁就懂啊哦啊死机哦啊死机adada懂啊哦啊死机案件搜低价爱谁就懂啊哦啊死机哦啊死机adada</div>
-                                            <div className="newimg">
-                                                <div className="imgitem"><img src={require('./../../static/images/h.jpg')}></img></div>
-                                                <div className="imgitem"><img src={require('./../../static/images/h.jpg')}></img></div>
-                                            </div>
-                                        </li> */}
                                     </ul>
                                 </div>
                             </div>

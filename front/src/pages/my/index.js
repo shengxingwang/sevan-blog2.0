@@ -4,7 +4,6 @@ import './style.css';
 
 import Guid from './../../components/guid'
 import asyncComponent from './../../utils/asyncComponents';
-import ScrollBar from './../../components/scrollTool'
 import Errpage from './../404/404';
 
 
@@ -18,13 +17,12 @@ class My extends Component{
     constructor(prop){
         super(prop);
         this.state = {
-
+            tip:''
         }
     }
     render() {
         return (
             <Guid history={this.props.history}>
-                <ScrollBar></ScrollBar>
                 <Switch>
                     <Route exact path='/my' component={art} />
                     <Route exact path='/my/arthome' component={art} />

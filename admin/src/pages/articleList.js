@@ -39,9 +39,9 @@ class ArticleList extends Component {
         key: 'tag',
         render: arr=> (
           <span>
-            {arr.split("|").map(item => 
+            {arr ? arr.split("|").map(item => 
               <i key={item} style={{paddingRight: '15px'}}>{item}</i>
-            )}
+            ):null}
           </span>
         )
       },

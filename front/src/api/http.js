@@ -6,6 +6,7 @@ import qs from 'qs'
 // axios.defaults.url='https://websevan.club';
 // const baseUrl = 'https://websevan.club/servers';
 
+// let baseUrl = process.env.NODE_ENV === "development" ? "https://websevan.club/servers":"https://websevan.club/servers";
 let baseUrl = process.env.NODE_ENV === "development" ? "http://localhost:9090/servers":"https://websevan.club/servers";
 
 axios.interceptors.request.use(config => {
@@ -24,7 +25,7 @@ axios.interceptors.request.use(config => {
 //
 axios.interceptors.response.use(response => {
         if(response.data.code!==200){
-            console.error("服务器错误！")
+            return Promise.reject('服务器错误');
         }
         return response;
     },

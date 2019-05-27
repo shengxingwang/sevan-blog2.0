@@ -9,7 +9,6 @@ class Guid extends Component{
         }
     }
     render() {
-        // console.log(this.props.history.location.pathname)
         let path = this.props.history.location.pathname;
         return (
             <div className="main-box">
@@ -17,7 +16,7 @@ class Guid extends Component{
                     <div className="container">
                         <ul className="bar">
                             <li className={path==="/"?'active':''}><Link to="/">首页</Link></li>
-                            <li className={path==="/my/arthome"?'active':''}><Link to="/my/arthome">文章</Link></li>
+                            <li className={/my\/arthome/.test(path)?'active':''}><Link to="/my/arthome">文章</Link></li>
                             <li className={path==="/my/filelog"?'active':''}><Link to="/my/filelog">归档</Link></li>
                             <li className={path==="/my/about"?'active':''}><Link to="/my/about">关于</Link></li>
                             <li className={path==="/my/feedme"?'active':''}><Link to="/my/feedme">留言</Link></li>

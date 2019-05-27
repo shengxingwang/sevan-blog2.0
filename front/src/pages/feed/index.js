@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getArtDet } from './../../store/actions';
 import { getTouch, putTouch } from './../../api/api';
+import ScrollBar from './../../components/scrollTool';
 import './style.css';
 
 class ArtDet extends Component{
@@ -19,21 +20,36 @@ class ArtDet extends Component{
             showFeed:false
         }
     }
+
+    loadFlag = true;
+
     componentWillMount(){
         
     }
-    getData(){
+    getData(ismore=false){
         let page = this.state.page;
         getTouch({page:page}).then( res => {
-            const { totalPage, page, list } = res.data.data;
+            let { totalPage, page, list } = res.data.data;
+            if(ismore){
+                list = this.state.data.concat(list);
+            }
             this.setState({
                 data:list,
                 totalPage:totalPage,
                 page:page
+            },()=>{
+                this.loadFlag = true
             })
         })
     }
     componentDidMount(){
+        let userInfo = sessionStorage.getItem("userInfo");
+        if(userInfo){
+            this.setState({
+                nick:JSON.parse(userInfo).nick,
+                email:JSON.parse(userInfo).email,
+            })
+        }
         this.getData();
         this.scrollLoad();
     }
@@ -79,6 +95,7 @@ class ArtDet extends Component{
             this.setState({
                 showFeed:false
             });
+            sessionStorage.setItem("userInfo",JSON.stringify({ nick:nick,email:email}));
             this.getData();
         })
     }
@@ -113,24 +130,21 @@ class ArtDet extends Component{
     }
     scrollLoad(){
         let wrap = document.querySelector(".wrap");
-        let flag = true;
         wrap.addEventListener("scroll",() =>{
-            console.log(1);
             let totalH = wrap.scrollHeight;
             let scrollH = wrap.scrollTop;
             let wrapH = wrap.offsetHeight;
             if(parseInt(this.state.totalPage)<=parseInt(this.state.page)){
-                console.log(2);
                 this.setState({
                     nodata:true
                 })
             }
-            if((scrollH+wrapH)+40>totalH&&flag&&parseInt(this.state.totalPage)>parseInt(this.state.page)){
-                flag = false;
+            if((scrollH+wrapH)+40>totalH&&this.loadFlag&&parseInt(this.state.totalPage)>parseInt(this.state.page)){
+                this.loadFlag = false;
                 this.setState({
                     page:parseInt(this.state.page)+1
                 })
-                this.getData()
+                this.getData(true)
             }
         })
     }
@@ -156,6 +170,7 @@ class ArtDet extends Component{
         )
         return (
             <div className="art-home">
+                <ScrollBar></ScrollBar>
                 <div className="container">
                     <div className="feed-box">
                         {this.state.showFeed ? toFeed : null}

@@ -23,7 +23,6 @@ class News extends Component{
         this.getNewData();
     };
     newsSearch(value){
-        console.log(value);
     };
     prev(){
         this.setState({

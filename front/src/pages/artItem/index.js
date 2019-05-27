@@ -15,7 +15,6 @@ class ArtDet extends Component{
         let id = this.props.match.params.id;
         this.props.getArtDet({id:id});
         lookhot({id:id});
-        console.log(id);
     }
     componentDidUpdate(){
         window.initHtml();

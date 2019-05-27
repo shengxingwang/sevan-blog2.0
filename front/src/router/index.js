@@ -8,11 +8,6 @@ import Errpage from './../pages/404/404';
 
 const My = asyncComponent(() => import('../pages/my'));
 
-// const about = asyncComponent(() => import('../pages/about/about'));
-// const news = asyncComponent(() => import('../pages/news/news'));
-// const arthome = asyncComponent(() => import('../pages/arthome'));
-// const touch = asyncComponent(() => import('../pages/touch/touch'));
-
 export default class routeConfig extends Component{
     render(){
         return (
@@ -21,9 +16,6 @@ export default class routeConfig extends Component{
                         <Switch>
                             <Route exact path='/' component={home} />
                             <Route path='/my' component={My} />
-                            {/* <Route path='/news' component={news} /> */}
-                            {/* <Route path='/shows' component={shows} /> */}
-                            {/* <Route path='/touch' component={touch} /> */}
                             <Route component={Errpage}/>
                         </Switch>
                         <Footer/>

@@ -46,5 +46,5 @@ export const putTouch = (data)=> {
 };
 //获取留言
 export const getTouch = (data)=> {
-    return post('/sevanBlog/blog.php?action=getTouchList',data);
+    return fetch('/sevanBlog/blog.php?action=getTouchList',data);
 };

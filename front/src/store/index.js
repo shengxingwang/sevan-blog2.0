@@ -1,8 +1,6 @@
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import reduce from './reducers'
-// import * as about from './reducers/aboutReducer';
-// console.log(about);
+import reduce from './reducers';
 
 let store = createStore(
     reduce,

@@ -1,27 +1,16 @@
 import React,{Component} from 'react';
 import './home.css';
-
-// import { connect } from 'react-redux';
-// import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-// import { getHomeNewsData, getStatusList } from "../../store/actions";
-// import Top from "./../../components/top/top";
-
 class ItemHome extends Component{
     constructor(props){
         super(props);
         this.state = {
-
+            tip:''
         }
     }
     static propTypes = {
-        // getHomeNewsData:propTypes.func.isRequired,
-        // homeData:propTypes.object.isRequired
     };
-    state = {};
     componentDidMount(){
-        // this.props.getHomeNewsData();
-        // this.props.getStatusList({action:'getStatus'});
     };
     render(){
         return(
@@ -45,15 +34,4 @@ class ItemHome extends Component{
         )
     }
 }
-
-
-// const mapStateToProps = ({ homeData }) => ({ homeData })
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {  
-//         getHomeNewsData,
-//         getStatusList
-//     }
-// }
 export default ItemHome;
-// export default connect(mapStateToProps,mapDispatchToProps)(ItemHome);
